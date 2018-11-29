@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="josephharrisonlimkevinma.comp304lab6.ex1.TransitActivity"
+            android:parentActivityName="josephharrisonlimkevinma.comp304lab6.MainActivity" />
+        <activity
+            android:name="josephharrisonlimkevinma.comp304lab6.ex2.MessageActivity"
+            android:parentActivityName="josephharrisonlimkevinma.comp304lab6.MainActivity"></activity>
     </application>
 
 </manifest>
