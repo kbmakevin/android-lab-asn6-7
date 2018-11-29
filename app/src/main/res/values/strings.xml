@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Lab4 M18 - Lab 6</string>
+
+    <!--menu/launcher-->
+    <string name="main_menu_instructions">Select exercise to demonstrate: </string>
+    <string name="ex1">Exercise 1</string>
+    <string name="ex2">Exercise 2</string>
+    <string-array name="main_menu_exercise_list">
+        <item>@string/ex1</item>
+        <item>@string/ex2</item>
+    </string-array>
+    <string name="main_menu_clicked_msg">"Clicked on "</string>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/main_menu_instruction_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/main_menu_instructions" />
+
+    <ListView
+        android:id="@+id/exerciseListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:entries="@array/main_menu_exercise_list" />
+</LinearLayout>
