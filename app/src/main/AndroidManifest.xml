@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comp304lab6.comp304lab6">
 
+  <!-- for ex1 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- for ex2 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -13,6 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
+
         <activity android:name="josephharrisonlimkevinma.comp304lab6.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
