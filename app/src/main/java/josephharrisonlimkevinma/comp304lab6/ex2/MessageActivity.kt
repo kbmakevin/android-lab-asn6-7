@@ -9,12 +9,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.telephony.SmsManager
 import android.text.method.ScrollingMovementMethod
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -44,7 +41,6 @@ class MessageActivity : Activity() {
             //display the SMS received in the TextView
             textMessage = findViewById<View>(R.id.textMessage) as TextView
             //display the content of the received message in text view
-            //SMSes.setText(intent.getExtras().getString("sms"));
             textMessage!!.text = textMessage!!.text.toString() + "\n" +
                     intent.extras!!.getString("sms")
         }
@@ -145,40 +141,16 @@ class MessageActivity : Activity() {
     fun sendMessage(v: View) {
         eText = findViewById<View>(R.id.editText) as EditText
         sendSMS(this.targetPhoneNumber, eText!!.text.toString())
-//        sendSMS("5556", eText!!.text.toString())
         textMessage!!.text = textMessage!!.text.toString() + "\n" + eText!!.text
     }
 
     //sends an SMS message to another device
     private fun sendSMS(phoneNumber: String, message: String) {
         val sms = SmsManager.getDefault()
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-//            //Permission is not granted so need to request
-//            ActivityCompat.requestPermissions(this,
-//                    arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS), 0)
-//            // The callback method gets the result of the request.
-//        }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
         } else {
             Toast.makeText(this, "You cannot use this feature as you have not granted permissions for ${arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS)}", Toast.LENGTH_LONG).show()
         }
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_message, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        val id = item.itemId
-//
-//        return if (id == R.id.action_settings) {
-//            true
-//        } else super.onOptionsItemSelected(item)
-//    }
 }

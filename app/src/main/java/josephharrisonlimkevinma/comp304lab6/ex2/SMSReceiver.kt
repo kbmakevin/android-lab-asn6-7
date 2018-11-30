@@ -6,7 +6,6 @@ import android.content.Intent
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
-import java.util.*
 
 class SMSReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
