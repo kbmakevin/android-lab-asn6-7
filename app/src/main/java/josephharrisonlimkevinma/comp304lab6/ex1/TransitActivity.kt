@@ -4,16 +4,13 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import comp304lab6.comp304lab6.R
 import kotlinx.android.synthetic.main.activity_transit.*
 import org.jetbrains.anko.*
-import java.io.IOException
 import java.net.URL
 
 class TransitActivity : AppCompatActivity() {
@@ -65,7 +62,6 @@ class TransitActivity : AppCompatActivity() {
                 stepStr.appendln(step["html_instructions"].asText())
                 stepStr.appendln()
             }
-
         }
         catch (e: Throwable) {
             Log.e("PARSE_ERR", e.toString())
