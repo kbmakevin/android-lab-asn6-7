@@ -1,12 +1,16 @@
 package josephharrisonlimkevinma.comp304lab6.ex2
 
+import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.telephony.SmsManager
 import android.text.method.ScrollingMovementMethod
 import android.view.Menu
@@ -65,6 +69,7 @@ class MessageActivity : Activity() {
             // clear text in edit text when user clicks on it
             eText!!.setText("")
         }
+
         //
         //an action to take in the future with same permission
         //as your application
@@ -137,7 +142,17 @@ class MessageActivity : Activity() {
     //sends an SMS message to another device
     private fun sendSMS(phoneNumber: String, message: String) {
         val sms = SmsManager.getDefault()
-        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+//            //Permission is not granted so need to request
+//            ActivityCompat.requestPermissions(this,
+//                    arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS), 0)
+//            // The callback method gets the result of the request.
+//        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
+        } else {
+            Toast.makeText(this, "You cannot use this feature as you have not granted permissions for ${arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS)}", Toast.LENGTH_LONG).show()
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {

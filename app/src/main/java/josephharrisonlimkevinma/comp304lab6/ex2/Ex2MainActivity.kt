@@ -1,7 +1,11 @@
 package josephharrisonlimkevinma.comp304lab6.ex2
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.widget.*
 import comp304lab6.comp304lab6.R
@@ -23,7 +27,13 @@ class Ex2MainActivity : AppCompatActivity() {
         lstView.isTextFilterEnabled = true
         contacts = resources.getStringArray(R.array.contacts)
 
-        Toast.makeText(this, "contacts are:\n$contacts", Toast.LENGTH_SHORT).show()
+        //request sms permissions
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            //Permission is not granted so need to request
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS), 0)
+            // The callback method gets the result of the request.
+        }
 
         var adapter = ArrayAdapter<String>(
                 this,
