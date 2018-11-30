@@ -36,6 +36,8 @@ class MessageActivity : Activity() {
     private lateinit var smsDeliveredReceiver: BroadcastReceiver
     private lateinit var intentFilter: IntentFilter
     //
+    private lateinit var targetPhoneNumber: String
+    //
     // receive intents sent by sendBroadcast()
     private val intentReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -56,6 +58,13 @@ class MessageActivity : Activity() {
         var contactName: String? = ""
         if (extras != null)
             contactName = extras.getString("contactName")
+
+        when (contactName) {
+            "Andy Rubin" -> this.targetPhoneNumber = "5556"
+            "James Gosling" -> this.targetPhoneNumber = "5554"
+            else -> this.targetPhoneNumber = "5556"
+        }
+
         textMessage = findViewById<View>(R.id.textMessage) as TextView
         textMessage!!.movementMethod = ScrollingMovementMethod.getInstance()
         val tView = findViewById<View>(R.id.textView) as TextView
@@ -135,7 +144,7 @@ class MessageActivity : Activity() {
     //
     fun sendMessage(v: View) {
         eText = findViewById<View>(R.id.editText) as EditText
-        sendSMS("5556", eText!!.text.toString())
+        sendSMS(this.targetPhoneNumber, eText!!.text.toString())
 //        sendSMS("5556", eText!!.text.toString())
         textMessage!!.text = textMessage!!.text.toString() + "\n" + eText!!.text
     }
