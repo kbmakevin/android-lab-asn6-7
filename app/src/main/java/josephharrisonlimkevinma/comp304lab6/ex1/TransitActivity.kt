@@ -3,6 +3,7 @@ package josephharrisonlimkevinma.comp304lab6.ex1
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.util.JsonReader
 import android.util.Log
 import android.view.View
@@ -48,7 +49,7 @@ class TransitActivity : AppCompatActivity() {
                 Log.d("QWERTY", "Parsing request")
                 val parsedStr = parseRequest(reqTxt)
                 Log.d("QWERTY", "Setting text directions")
-                txtDirections.text = parsedStr
+                txtDirections.text = Html.fromHtml(parsedStr, Html.FROM_HTML_MODE_LEGACY).toString()
             }
         }
     }
@@ -62,6 +63,7 @@ class TransitActivity : AppCompatActivity() {
             val steps = leg["steps"]
             for (step in steps) {
                 stepStr.appendln(step["html_instructions"].asText())
+                stepStr.appendln()
             }
 
         }
