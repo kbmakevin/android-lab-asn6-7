@@ -26,7 +26,7 @@ class TransitActivity : AppCompatActivity() {
         val start = txtStartPoint.text.toString()
         val dest = txtEndPoint.text.toString()
         val url = "https://maps.googleapis.com/maps/api/directions/json"
-        val reqStr = "$url?origin=${Uri.encode(start)}&destination=${Uri.encode(dest)}&key=${resources.getString(R.string.google_maps_key)}"
+        val reqStr = "$url?origin=${Uri.encode(start)}&destination=${Uri.encode(dest)}&key=${resources.getString(R.string.google_maps_key)}&mode=transit"
         transitRequest(reqStr)
     }
 
