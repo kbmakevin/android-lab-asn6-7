@@ -45,11 +45,11 @@
         <Button
             android:id="@+id/getInfoBtn"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="111dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:width="50dp"
             android:height="30dp"
-            android:onClick="getInfo"
+            android:onClick="onGetInfoClick"
             android:text="Get Info"
             android:textColor="@android:color/black" />
 
