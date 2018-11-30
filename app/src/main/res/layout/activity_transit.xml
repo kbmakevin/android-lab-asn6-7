@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:width="50dp"
             android:height="30dp"
+            android:inputType="none"
             android:onClick="onGetInfoClick"
             android:text="Get Info"
             android:textColor="@android:color/black" />
@@ -58,9 +59,10 @@
             android:layout_width="329dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.73"
+            android:inputType="none"
             android:maxLines="10"
-            android:scrollbars="vertical"
 
+            android:scrollbars="vertical"
             android:text="@string/directions" />
 
 

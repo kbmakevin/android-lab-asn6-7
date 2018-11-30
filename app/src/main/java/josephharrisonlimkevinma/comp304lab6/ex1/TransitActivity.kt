@@ -4,16 +4,13 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import comp304lab6.comp304lab6.R
 import kotlinx.android.synthetic.main.activity_transit.*
 import org.jetbrains.anko.*
-import java.io.IOException
 import java.net.URL
 
 class TransitActivity : AppCompatActivity() {
@@ -49,7 +46,7 @@ class TransitActivity : AppCompatActivity() {
                 Log.d("QWERTY", "Parsing request")
                 val parsedStr = parseRequest(reqTxt)
                 Log.d("QWERTY", "Setting text directions")
-                txtDirections.text = Html.fromHtml(parsedStr, Html.FROM_HTML_MODE_LEGACY).toString()
+                txtDirections.text = parsedStr
             }
         }
     }
@@ -62,10 +59,8 @@ class TransitActivity : AppCompatActivity() {
             val leg = route["legs"][0]
             val steps = leg["steps"]
             for (step in steps) {
-                stepStr.appendln(step["html_instructions"].asText())
-                stepStr.appendln()
+                stepStr.appendln(Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString())
             }
-
         }
         catch (e: Throwable) {
             Log.e("PARSE_ERR", e.toString())
