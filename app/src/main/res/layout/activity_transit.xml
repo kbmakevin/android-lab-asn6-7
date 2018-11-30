@@ -6,4 +6,64 @@
     android:layout_height="match_parent"
     tools:context="josephharrisonlimkevinma.comp304lab6.ex1.TransitActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/transit_desc"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="50dp"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtStartPoint"
+            android:typeface="sans"
+            android:singleLine="false"
+            android:maxLines="3"
+            android:textIsSelectable="false"
+            android:layout_weight="0.10"
+            android:hint="Enter Start Point" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtEndPoint"
+            android:typeface="sans"
+            android:singleLine="false"
+            android:maxLines="3"
+            android:textIsSelectable="false"
+            android:layout_weight="0.10"
+            android:hint="Enter End Point" />
+
+        <Button
+            android:id="@+id/getInfoBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:width="50dp"
+            android:height="30dp"
+            android:onClick="getInfo"
+            android:text="Get Info"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtDirections"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.73"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+
+            android:text="@string/directions" />
+
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

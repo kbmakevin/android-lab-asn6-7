@@ -10,5 +10,7 @@
         <item>@string/ex2</item>
     </string-array>
     <string name="main_menu_clicked_msg">"Clicked on "</string>
+    <string name="directions">Enter a location above to receive directions!</string>
+    <string name="transit_desc">We Know De Way!</string>
 
 </resources>
