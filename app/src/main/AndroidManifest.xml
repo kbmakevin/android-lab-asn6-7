@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comp304lab6.comp304lab6">
+
+  <!-- for ex1 -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- for ex2 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +32,16 @@
             android:parentActivityName="josephharrisonlimkevinma.comp304lab6.MainActivity" />
         <activity
             android:name="josephharrisonlimkevinma.comp304lab6.ex2.MessageActivity"
+            android:parentActivityName="josephharrisonlimkevinma.comp304lab6.ex2.Ex2MainActivity" />
+
+        <receiver android:name="josephharrisonlimkevinma.comp304lab6.ex2.SMSReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="josephharrisonlimkevinma.comp304lab6.ex2.Ex2MainActivity"
             android:parentActivityName="josephharrisonlimkevinma.comp304lab6.MainActivity"></activity>
     </application>
 
