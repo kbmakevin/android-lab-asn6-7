@@ -59,7 +59,9 @@ class TransitActivity : AppCompatActivity() {
             val leg = route["legs"][0]
             val steps = leg["steps"]
             for (step in steps) {
-                stepStr.appendln(Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString())
+                val distance = step["distance"]["text"].toString().replace("\"", "")
+                val direction = Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString()
+                stepStr.appendln("[$distance] $direction")
             }
         }
         catch (e: Throwable) {
