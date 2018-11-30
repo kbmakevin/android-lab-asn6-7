@@ -46,7 +46,7 @@ class TransitActivity : AppCompatActivity() {
                 Log.d("QWERTY", "Parsing request")
                 val parsedStr = parseRequest(reqTxt)
                 Log.d("QWERTY", "Setting text directions")
-                txtDirections.text = Html.fromHtml(parsedStr, Html.FROM_HTML_MODE_LEGACY).toString()
+                txtDirections.text = parsedStr
             }
         }
     }
@@ -59,8 +59,7 @@ class TransitActivity : AppCompatActivity() {
             val leg = route["legs"][0]
             val steps = leg["steps"]
             for (step in steps) {
-                stepStr.appendln(step["html_instructions"].asText())
-                stepStr.appendln()
+                stepStr.appendln(Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString())
             }
         }
         catch (e: Throwable) {
