@@ -136,6 +136,7 @@ class MessageActivity : Activity() {
     fun sendMessage(v: View) {
         eText = findViewById<View>(R.id.editText) as EditText
         sendSMS("5556", eText!!.text.toString())
+//        sendSMS("5556", eText!!.text.toString())
         textMessage!!.text = textMessage!!.text.toString() + "\n" + eText!!.text
     }
 

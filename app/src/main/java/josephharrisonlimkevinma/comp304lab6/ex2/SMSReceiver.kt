@@ -6,27 +6,34 @@ import android.content.Intent
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
+import java.util.*
 
 class SMSReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         //---get the SMS message passed in---
         val bundle = intent.extras
-        var msgs: Array<SmsMessage>?
+        var msgs: Array<SmsMessage?>
         var str = "SMS from "
         if (bundle != null) {
             //---retrieve the SMS message received---
-            val pdus = bundle.get("pdus") as Array<SmsMessage>
-//            msgs = arrayOfNulls(size = pdus.size)
-            msgs = arrayOf()
+            //each sms msg is stored in an Object array in the PDU (protocol data unit) format
+            /**
+             * If the SMS message is fewer than 160 characters, then the array will have one element.
+             * If an SMS message contains more than 160 characters, then the message will be split
+             * into multiple smaller messages and stored as multiple elements in the array
+             */
+//            val pdus = bundle.get("pdus") as Array<SmsMessage>
+            val pdus = bundle.get("pdus") as Array<ByteArray>
+            msgs = arrayOfNulls(size = pdus.size)
             for (i in msgs.indices) {
                 msgs[i] = SmsMessage.createFromPdu(pdus[i] as ByteArray)
                 if (i == 0) {
                     //---get the sender address/phone number---
-                    str += msgs[i].originatingAddress
+                    str += msgs[i]!!.originatingAddress
                     str += ": "
                 }
                 //---get the message body---
-                str += msgs[i].messageBody.toString()
+                str += msgs[i]!!.messageBody.toString()
             }
             //---display the new SMS message---
             Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
