@@ -26,7 +26,7 @@ class TransitActivity : AppCompatActivity() {
         val start = txtStartPoint.text.toString()
         val dest = txtEndPoint.text.toString()
         val url = "https://maps.googleapis.com/maps/api/directions/json"
-        val reqStr = "$url?origin=${Uri.encode(start)}&destination=${Uri.encode(dest)}&key=${resources.getString(R.string.google_maps_key)}"
+        val reqStr = "$url?origin=${Uri.encode(start)}&destination=${Uri.encode(dest)}&key=${resources.getString(R.string.google_maps_key)}&mode=transit"
         transitRequest(reqStr)
     }
 
@@ -59,7 +59,9 @@ class TransitActivity : AppCompatActivity() {
             val leg = route["legs"][0]
             val steps = leg["steps"]
             for (step in steps) {
-                stepStr.appendln(Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString())
+                val distance = step["distance"]["text"].toString().replace("\"", "")
+                val direction = Html.fromHtml(step["html_instructions"].asText(), Html.FROM_HTML_MODE_LEGACY).toString()
+                stepStr.appendln("[$distance] $direction")
             }
         }
         catch (e: Throwable) {
